@@ -1,0 +1,3 @@
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug/CMakeFiles/sparse-matrix-AlejandroMamaniAndia199802.dir
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug/CMakeFiles/edit_cache.dir

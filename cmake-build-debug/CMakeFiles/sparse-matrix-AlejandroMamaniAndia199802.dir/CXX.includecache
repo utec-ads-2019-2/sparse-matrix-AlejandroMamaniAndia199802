@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/main.cpp
+iostream
+-
+tester/tester.h
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/tester/tester.h
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/matrix.h
+stdexcept
+-
+node.h
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/node.h
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/mocker/mocker.h
+random
+-
+type_traits
+-
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/node.h
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/tester/tester.cpp
+tester.h
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/tester/tester.h
+
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/tester/tester.h
+stdexcept
+-
+iostream
+-
+assert.h
+-
+vector
+-
+algorithm
+-
+../mocker/mocker.h
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/mocker/mocker.h
+../matrix.h
+/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/matrix.h
+

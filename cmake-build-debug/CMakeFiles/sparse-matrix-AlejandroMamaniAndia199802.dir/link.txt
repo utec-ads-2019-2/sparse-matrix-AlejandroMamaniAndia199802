@@ -1,0 +1,1 @@
+/usr/bin/c++  -pthread -g   CMakeFiles/sparse-matrix-AlejandroMamaniAndia199802.dir/main.cpp.o CMakeFiles/sparse-matrix-AlejandroMamaniAndia199802.dir/mocker/mocker.cpp.o CMakeFiles/sparse-matrix-AlejandroMamaniAndia199802.dir/tester/tester.cpp.o  -o sparse-matrix-AlejandroMamaniAndia199802 
