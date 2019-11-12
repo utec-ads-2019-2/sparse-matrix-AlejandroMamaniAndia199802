@@ -1,0 +1,1 @@
+/usr/bin/c++  -pthread -g   CMakeFiles/sparse-matrix-jhonatanmacazana.dir/main.cpp.o CMakeFiles/sparse-matrix-jhonatanmacazana.dir/mocker/mocker.cpp.o CMakeFiles/sparse-matrix-jhonatanmacazana.dir/tester/tester.cpp.o  -o sparse-matrix-jhonatanmacazana 

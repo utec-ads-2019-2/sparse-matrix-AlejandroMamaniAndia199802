@@ -44,3 +44,4 @@ public:
 };
 
 #endif //SPARSE_MATRIX_NODE_H
+

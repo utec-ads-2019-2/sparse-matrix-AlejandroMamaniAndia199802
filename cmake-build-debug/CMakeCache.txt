@@ -218,10 +218,28 @@ ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
 //Value Computed by CMake
+Project_BINARY_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug
+
+//Value Computed by CMake
+Project_SOURCE_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802
+
+//Value Computed by CMake
 sparse-matrix-AlejandroMamaniAndia199802_BINARY_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug
 
 //Value Computed by CMake
 sparse-matrix-AlejandroMamaniAndia199802_SOURCE_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802
+
+//Value Computed by CMake
+sparse-matrix-AlejandroMamani_BINARY_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug
+
+//Value Computed by CMake
+sparse-matrix-AlejandroMamani_SOURCE_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802
+
+//Value Computed by CMake
+sparse-matrix-_BINARY_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug
+
+//Value Computed by CMake
+sparse-matrix-_SOURCE_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802
 
 //Value Computed by CMake
 sparse-matrix-jhonatanmacazana_BINARY_DIR:STATIC=/home/alejandro/Documents/TAREAS AED/sparse-matrix-AlejandroMamaniAndia199802/cmake-build-debug

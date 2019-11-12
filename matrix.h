@@ -10,27 +10,25 @@ template <typename T>
 class Matrix {
 private:
     Node<T> *root;
-    unsigned rows, cols;
+    unsigned rows{}, cols{};
 
 public:
-    Matrix(unsigned numRows, unsigned numCols)
+    Matrix(unsigned rows, unsigned cols)
     {
         this->root = new Node<T>();
-        if(numRows <=0 || numCols <= 0) std::cerr << "Invalid size";
-        this->rows = numRows;
-        this->cols = numCols;
-
-
+        if(rows <=0 || cols <= 0) std::cerr << "Invalid size";
+        this->rows = rows;
+        this->cols = cols;
 
         auto tempPointer = this->root;
-        for (int i = 0; i < numCols; ++i) {
+        for (int i = 0; i < cols; ++i) {
             auto ptr = new Node<T>(-1,i,i);
             tempPointer->next = ptr;
             tempPointer = ptr;
         }
 
         tempPointer = this->root;
-        for (int i = 0; i < numRows; ++i) {
+        for (int i = 0; i < rows; ++i) {
             auto ptr = new Node<T>(i,-1,i);
             tempPointer->down = ptr;
             tempPointer = ptr;
@@ -38,7 +36,6 @@ public:
 
 
     }
-
     uint8_t getRows()
     {
         return rows;
@@ -54,7 +51,6 @@ public:
 
         auto newNode = new Node<T>(posx, posy, val);
 
-        
         auto prevPointer = this->root;
         auto searchPointer = this->root;
         for(uint8_t i = 0; i<=posx; i++)
@@ -81,8 +77,6 @@ public:
             newNode->next = searchPointer->next;
             searchPointer->next = newNode;
         }
-
-        
         searchPointer = this->root;
         for(uint8_t i = 0; i<=posy; i++)
         {
@@ -113,7 +107,7 @@ public:
     {
         auto tempPointer = this->root;
 
-        while((tempPointer->posX < posx || tempPointer->posX = NULL_VAL) && tempPointer->down != NULL)
+        while((tempPointer->posX < posx || tempPointer->posX == NULL_VAL) && tempPointer->down != NULL)
         {
             tempPointer = tempPointer->down;
         }
@@ -226,21 +220,18 @@ public:
         {
             for(int j = 0; j < rows; ++j)
             {
-                T val = this->operator()(i,j);
-                if(val != 0) printf("(%d, %d)[%d]\t->\t", i, j, val);
+                T value = this->operator()(i,j);
+                if(value != 0) printf("(%d, %d)[%d]\t->\t", i, j, value);
             }
-            cout << "\n";
+
         }
 
     }
 
     ~Matrix()
     {
-        //TODO
+
     }
 };
 
 #endif //SPARSE_MATRIX_MATRIX_H
-
-    
-    
