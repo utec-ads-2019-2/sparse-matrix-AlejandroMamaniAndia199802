@@ -130,8 +130,9 @@ public:
 
     Matrix<T> operator*(Matrix<T> other) const
     {
-        if(this->cols != other.rows) throw ;
+        if(other.rows != this->cols ) throw ;
         Matrix<T> productMatrix(this->rows, other.cols);
+
         for(int i = 0; i< other.cols; i++)
         {
             for (int j = 0; j < this->rows; j++)
@@ -140,7 +141,7 @@ public:
                 {
                     T sum = 0;
                     for (int k = 0; k < this->cols; k++)
-                        sum += this->operator()(j,k) + other.operator()(k,i);
+                        sum += this->operator()(j,k) * other.operator()(k,i);
                     productMatrix.set(i,j, sum);
                 }
             }
