@@ -30,6 +30,14 @@ public:
         this->next = this->down = nullptr;
         this->data = value;
     }
+    void killSelf()
+    {
+        if(this->next)
+        {
+            this->next->killSelf();
+            delete this;
+        }
+    }
 
     friend class Matrix<T>;
 };

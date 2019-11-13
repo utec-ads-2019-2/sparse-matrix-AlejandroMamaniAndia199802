@@ -211,8 +211,18 @@ public:
     }
     ~Matrix()
     {
+        for (int j = 0; j < rows; ++j)
+        {
+            auto *ptr = new Node<T>(j,-1,j);
+            if(operator()(0,j))
+            {
+                T value_1=  operator()(0,j);
+                ptr-> killSelf();
+            }
+        }
 
-    }
+    };
+
 };
 
 #endif //SPARSE_MATRIX_MATRIX_H
