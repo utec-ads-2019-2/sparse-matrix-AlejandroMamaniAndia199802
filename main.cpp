@@ -4,6 +4,7 @@
 
 int main() {
     Tester::execute();
+
     Matrix<int> matrix(2, 2);
     matrix.set(0,0,7);
     matrix.set(0,1,8);

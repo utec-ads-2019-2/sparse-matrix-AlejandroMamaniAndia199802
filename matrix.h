@@ -10,10 +10,10 @@ template <typename T>
 class Matrix {
 private:
     Node<T> *root = nullptr ;
-    unsigned rows, cols;
+    int rows, cols;
 
 public:
-    Matrix(unsigned rows, unsigned cols)
+    Matrix(int rows,  int cols)
     {
         this->root = new Node<T>();
         if(cols <=0 ||  rows<= 0) throw;
@@ -100,18 +100,16 @@ public:
     {
         auto *temp = this->root;
 
-        while((temp->X < x || temp->X == NULL_VALUE) && temp->down != nullptr)
+        while(  temp->down != nullptr && (temp->X < x || temp->X == NULL_VALUE))
         {
             temp = temp->down;
         }
-        while((temp->Y < y || temp->Y == NULL_VALUE) && temp->next != nullptr)
+        while( temp->next != nullptr && (temp->Y < y || temp->Y == NULL_VALUE))
         {
             temp = temp->next;
         }
-        if(temp->X == x && temp->Y == y)
-            return temp->data;
-        else
-            return 0;
+        if(temp->X == x && temp->Y == y) return temp->data;
+        else return 0;
     }
 
     Matrix<T> operator*(T scalar) const
@@ -132,9 +130,7 @@ public:
 
     Matrix<T> operator*(Matrix<T> other) const
     {
-        if(this->cols != other.rows)
-            throw ;
-
+        if(this->cols != other.rows) throw ;
         Matrix<T> productMatrix(this->rows, other.cols);
         for(int i = 0; i< other.cols; i++)
         {
@@ -147,10 +143,8 @@ public:
                         sum += this->operator()(j,k) + other.operator()(k,i);
                     productMatrix.set(i,j, sum);
                 }
-
             }
         }
-
         return productMatrix;
     }
 
@@ -169,7 +163,6 @@ public:
                 if(value_1 != 0 && value_2 != 0) sumMatrix.set(i, j, value_1+value_2);
             }
         }
-
         return sumMatrix;
     }
 
@@ -177,7 +170,6 @@ public:
     {
         if(this->rows != other.rows || this->cols != other.cols)
             throw;
-
         Matrix<T> susMatrix(rows, cols);
         for(int i = 0; i< rows; i++)
         {
@@ -188,13 +180,12 @@ public:
                 if(value_1 != 0 && value_2 != 0) susMatrix.set(i, j, value_1-value_2);
             }
         }
-
         return susMatrix;
     }
+
     Matrix<T> transpose() const
     {
         Matrix<T> tranMatrix(rows, cols);
-
         for(int i = 0; i< rows; i++)
         {
             for (int j = 0; j < cols; j++)
@@ -203,7 +194,6 @@ public:
                 if(value != 0)tranMatrix.set(j, i, value);
             }
         }
-
         return tranMatrix;
     }
 
@@ -215,15 +205,6 @@ public:
             }
             cout<<endl;
         }
-
-    }
-    int getRows()
-    {
-        return rows;
-    }
-    int  getCols()
-    {
-        return cols;
     }
     ~Matrix()
     {
