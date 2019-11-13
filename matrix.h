@@ -36,14 +36,7 @@ public:
 
 
     }
-    int getRows()
-    {
-        return rows;
-    }
-    int  getCols()
-    {
-        return cols;
-    }
+
 
     void set(int x, int y, T val)
     {
@@ -206,8 +199,8 @@ public:
         {
             for (int j = 0; j < cols; j++)
             {
-                T val = this->operator()(i,j);
-                if(val != 0) tranMatrix.set(j, i, val);
+                T value = (*this)(i,j);
+                if(value != 0)tranMatrix.set(j, i, value);
             }
         }
 
@@ -216,18 +209,22 @@ public:
 
     void print() const
     {
-        for (int i = 0; i < cols; ++i)
-        {
-            for(int j = 0; j < rows; ++j)
-            {
-                T value = this->operator()(i,j);
-                if(value != 0) printf("(%d, %d)[%d]\t->\t", i, j, value);
+        for(int i = 0; i<cols; i++){
+            for(int j = 0; j<rows; j++){
+                cout<<(*this)(i, j)<<" ";
             }
-
+            cout<<endl;
         }
 
     }
-
+    int getRows()
+    {
+        return rows;
+    }
+    int  getCols()
+    {
+        return cols;
+    }
     ~Matrix()
     {
 
