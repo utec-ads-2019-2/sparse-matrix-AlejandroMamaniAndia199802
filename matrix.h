@@ -105,18 +105,18 @@ public:
 
     T operator()(int posx, int posy) const
     {
-        auto *tempPointer = this->root;
+        auto *temp = this->root;
 
-        while((tempPointer->posX < posx || tempPointer->posX == NULL_VALUE) && tempPointer->down != NULL)
+        while((temp->posX < posx || temp->posX == NULL_VALUE) && temp->down != nullptr)
         {
-            tempPointer = tempPointer->down;
+            temp = temp->down;
         }
-        while((tempPointer->posY < posy || tempPointer->posY == NULL_VALUE) && tempPointer->next != NULL)
+        while((temp->posY < posy || temp->posY == NULL_VALUE) && temp->next != nullptr)
         {
-            tempPointer = tempPointer->next;
+            temp = temp->next;
         }
-        if(tempPointer->posX == posx && tempPointer->posY == posy)
-            return tempPointer->data;
+        if(temp->posX == posx && temp->posY == posy)
+            return temp->data;
         else
             return 0;
     }
