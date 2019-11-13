@@ -41,8 +41,9 @@ int main() {
 
     Matrix<int> matrix6 = matrix5 *matrix4;
     cout << "***********\n";
-    cout << " Multiplication";
+    cout << " Multiplication\n";
     matrix6.print();
+
     return EXIT_SUCCESS;
-}
+;}
 

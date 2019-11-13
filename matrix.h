@@ -9,38 +9,38 @@ using namespace std;
 template <typename T>
 class Matrix {
 private:
-    Node<T> *root;
-    unsigned rows{}, cols{};
+    Node<T> *root = nullptr ;
+    unsigned rows, cols;
 
 public:
     Matrix(unsigned rows, unsigned cols)
     {
         this->root = new Node<T>();
-        if(rows <=0 || cols <= 0) std::cerr << "Invalid size";
+        if(cols <=0 ||  rows<= 0) throw;
         this->rows = rows;
         this->cols = cols;
 
-        auto tempPointer = this->root;
+        Node<T> *temp = this->root;
         for (int i = 0; i < cols; ++i) {
-            auto ptr = new Node<T>(-1,i,i);
-            tempPointer->next = ptr;
-            tempPointer = ptr;
+            auto *ptr = new Node<T>(-1,i,i);
+            temp->next = ptr;
+            temp = ptr;
         }
 
-        tempPointer = this->root;
+        temp = this->root;
         for (int i = 0; i < rows; ++i) {
-            auto ptr = new Node<T>(i,-1,i);
-            tempPointer->down = ptr;
-            tempPointer = ptr;
+            auto *ptr = new Node<T>(i,-1,i);
+            temp->down = ptr;
+            temp = ptr;
         }
 
 
     }
-    uint8_t getRows()
+    int getRows()
     {
         return rows;
     }
-    uint8_t getCols()
+    int  getCols()
     {
         return cols;
     }
@@ -51,67 +51,67 @@ public:
 
         auto newNode = new Node<T>(posx, posy, val);
 
-        auto prevPointer = this->root;
-        auto searchPointer = this->root;
-        for(uint8_t i = 0; i<=posx; i++)
+        Node<T> *prev;
+        auto search = this->root;
+        for(int i = 0; i<=posx; i++)
         {
-            searchPointer = searchPointer->down;
+            search = search->down;
         }
-        prevPointer = searchPointer;
-        while(searchPointer->posY < posy && searchPointer->next != NULL)
+        prev= search;
+        while(search->posY < posy && search->next != nullptr)
         {
-            prevPointer = searchPointer;
-            searchPointer = searchPointer->next;
+            prev= search;
+            search = search->next;
         }
-        if(searchPointer->posY > posy)
+        if(search->posY > posy)
         {
-            newNode->next = searchPointer;
-            prevPointer->next = newNode;
+            newNode->next = search;
+            prev->next = newNode;
         }
-        else if(searchPointer->next == NULL)
+        else if(search->next == nullptr)
         {
-            searchPointer->next = newNode;
-        }
-        else
-        {
-            newNode->next = searchPointer->next;
-            searchPointer->next = newNode;
-        }
-        searchPointer = this->root;
-        for(uint8_t i = 0; i<=posy; i++)
-        {
-            searchPointer = searchPointer->next;
-        }
-        while(searchPointer->posX < posx && searchPointer->down != NULL)
-        {
-            searchPointer = searchPointer->down;
-        }
-        if(searchPointer->posX > posx)
-        {
-            newNode->down = searchPointer;
-            prevPointer->down = newNode;
-        }
-        else if(searchPointer->down == NULL)
-        {
-            searchPointer->down = newNode;
+            search->next = newNode;
         }
         else
         {
-            newNode->down = searchPointer->down;
-            searchPointer->down = newNode;
+            newNode->next = search->next;
+            search->next = newNode;
+        }
+        search = this->root;
+        for(int i = 0; i<=posy; i++)
+        {
+            search = search->next;
+        }
+        while(search->posX < posx && search->down != nullptr)
+        {
+            search = search->down;
+        }
+        if(search->posX > posx)
+        {
+            newNode->down = search;
+            prev->down = newNode;
+        }
+        else if(search->down == nullptr)
+        {
+            search->down = newNode;
+        }
+        else
+        {
+            newNode->down = search->down;
+            search->down = newNode;
         }
 
     }
 
     T operator()(int posx, int posy) const
     {
-        auto tempPointer = this->root;
+        auto *tempPointer = this->root;
 
-        while((tempPointer->posX < posx || tempPointer->posX == NULL_VAL) && tempPointer->down != NULL)
+        while((tempPointer->posX < posx || tempPointer->posX == NULL_VALUE) && tempPointer->down != NULL)
         {
             tempPointer = tempPointer->down;
         }
-        while((tempPointer->posY < posy || tempPointer->posY == NULL_VAL) && tempPointer->next != NULL)
+        while((tempPointer->posY < posy || tempPointer->posY == NULL_VALUE) && tempPointer->next != NULL)
         {
             tempPointer = tempPointer->next;
         }
