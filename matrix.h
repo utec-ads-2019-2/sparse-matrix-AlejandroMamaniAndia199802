@@ -137,13 +137,15 @@ public:
         {
             for (int j = 0; j < this->rows; j++)
             {
-                if(this->operator()(i,j) != 0 && other.operator()(i,j) != 0)
-                {
                     T sum = 0;
                     for (int k = 0; k < this->cols; k++)
-                        sum += this->operator()(j,k) * other.operator()(k,i);
+                    {
+                        if(this->operator()(i,j) != 0 && other.operator()(i,j) != 0)
+                            {
+                                sum += this->operator()(j,k) * other.operator()(k,i);
+                            }
+                    }
                     productMatrix.set(i,j, sum);
-                }
             }
         }
         return productMatrix;
