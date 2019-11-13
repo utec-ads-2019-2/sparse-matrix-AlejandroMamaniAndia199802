@@ -10,7 +10,7 @@ class Matrix;
 template <typename T>
 class Node {
 private:
-    int posX{}, posY{};
+    int X{}, Y{};
     T data;
 
 protected:
@@ -19,16 +19,16 @@ protected:
 public:
     explicit Node()
     {
-        this->posX = this->posY = NULL_VALUE;
+        this->X = this->Y = NULL_VALUE;
         this->next = this->down = nullptr;
         this->data = 0;
     }
-    Node(int posx, int posy, T val)
+    Node(int x, int y, T value)
     {
-        this->posX = posx;
-        this->posY = posy;
+        this->X = x;
+        this->Y =  y;
         this->next = this->down = nullptr;
-        this->data = val;
+        this->data = value;
     }
 
     friend class Matrix<T>;

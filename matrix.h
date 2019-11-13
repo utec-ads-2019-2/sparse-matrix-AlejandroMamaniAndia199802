@@ -45,77 +45,77 @@ public:
         return cols;
     }
 
-    void set(int posx, int posy, T val)
+    void set(int x, int y, T val)
     {
-        if(this->operator()(posx, posy) != 0) return;
+        if(this->operator()(x, y) != 0) return;
 
-        auto newNode = new Node<T>(posx, posy, val);
+        auto addedNode = new Node<T>(x, y, val);
 
         Node<T> *prev;
         auto search = this->root;
-        for(int i = 0; i<=posx; i++)
+        for(int i = 0; i<=x; i++)
         {
             search = search->down;
         }
         prev= search;
-        while(search->posY < posy && search->next != nullptr)
+        while(search->Y < y && search->next != nullptr)
         {
             prev= search;
             search = search->next;
         }
-        if(search->posY > posy)
+        if(search->Y > y)
         {
-            newNode->next = search;
-            prev->next = newNode;
+            addedNode->next = search;
+            prev->next = addedNode;
         }
         else if(search->next == nullptr)
         {
-            search->next = newNode;
+            search->next = addedNode;
         }
         else
         {
-            newNode->next = search->next;
-            search->next = newNode;
+            addedNode->next = search->next;
+            search->next = addedNode;
         }
         search = this->root;
-        for(int i = 0; i<=posy; i++)
+        for(int i = 0; i<=y; i++)
         {
             search = search->next;
         }
-        while(search->posX < posx && search->down != nullptr)
+        while(search->X < x && search->down != nullptr)
         {
             search = search->down;
         }
-        if(search->posX > posx)
+        if(search->X > x)
         {
-            newNode->down = search;
-            prev->down = newNode;
+            addedNode->down = search;
+            prev->down = addedNode;
         }
         else if(search->down == nullptr)
         {
-            search->down = newNode;
+            search->down = addedNode;
         }
         else
         {
-            newNode->down = search->down;
-            search->down = newNode;
+            addedNode->down = search->down;
+            search->down = addedNode;
         }
 
     }
 
-    T operator()(int posx, int posy) const
+    T operator()(int x, int y) const
     {
         auto *temp = this->root;
 
-        while((temp->posX < posx || temp->posX == NULL_VALUE) && temp->down != nullptr)
+        while((temp->X < x || temp->X == NULL_VALUE) && temp->down != nullptr)
         {
             temp = temp->down;
         }
-        while((temp->posY < posy || temp->posY == NULL_VALUE) && temp->next != nullptr)
+        while((temp->Y < y || temp->Y == NULL_VALUE) && temp->next != nullptr)
         {
             temp = temp->next;
         }
-        if(temp->posX == posx && temp->posY == posy)
+        if(temp->X == x && temp->Y == y)
             return temp->data;
         else
             return 0;
@@ -123,95 +123,95 @@ public:
 
     Matrix<T> operator*(T scalar) const
     {
-        Matrix<T> newMatrix(rows, cols);
+        Matrix<T> multipliedMatrix(rows, cols);
 
         for(int i = 0; i< rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                T val = this->operator()(i,j);
-                if(val != 0) newMatrix.set(i, j, val*scalar);
+                T value = this->operator()(i,j);
+                if(value != 0) multipliedMatrix.set(i, j, value*scalar);
             }
         }
 
-        return newMatrix;
+        return multipliedMatrix;
     }
 
     Matrix<T> operator*(Matrix<T> other) const
     {
         if(this->cols != other.rows)
-            std::cerr << "Wrong size";
+            throw ;
 
-        Matrix<T> newMatrix(this->rows, other.cols);
+        Matrix<T> productMatrix(this->rows, other.cols);
         for(int i = 0; i< other.cols; i++)
         {
             for (int j = 0; j < this->rows; j++)
             {
                 if(this->operator()(i,j) != 0 && other.operator()(i,j) != 0)
                 {
-                    T cumSum = 0;
+                    T sum = 0;
                     for (int k = 0; k < this->cols; k++)
-                        cumSum += this->operator()(j,k) + other.operator()(k,i);
-                    newMatrix.set(i,j,cumSum);
+                        sum += this->operator()(j,k) + other.operator()(k,i);
+                    productMatrix.set(i,j, sum);
                 }
 
             }
         }
 
-        return newMatrix;
+        return productMatrix;
     }
 
     Matrix<T> operator+(Matrix<T> other) const
     {
         if(this->rows != other.rows || this->cols != other.cols)
-            std::cerr << "Different size";
+            throw;
 
-        Matrix<T> newMatrix(rows, cols);
+        Matrix<T> sumMatrix(rows, cols);
         for(int i = 0; i< rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                T val1 = this->operator()(i,j);
-                T val2 = other.operator()(i,j);
-                if(val1 != 0 && val2 != 0) newMatrix.set(i, j, val1+val2);
+                T value_1 = this->operator()(i,j);
+                T value_2 = other.operator()(i,j);
+                if(value_1 != 0 && value_2 != 0) sumMatrix.set(i, j, value_1+value_2);
             }
         }
 
-        return newMatrix;
+        return sumMatrix;
     }
 
     Matrix<T> operator-(Matrix<T> other) const
     {
         if(this->rows != other.rows || this->cols != other.cols)
-            std::cerr << "Different size";
+            throw;
 
-        Matrix<T> newMatrix(rows, cols);
+        Matrix<T> susMatrix(rows, cols);
         for(int i = 0; i< rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                T val1 = this->operator()(i,j);
-                T val2 = other.operator()(i,j);
-                if(val1 != 0 && val2 != 0) newMatrix.set(i, j, val1-val2);
+                T value_1 = this->operator()(i,j);
+                T value_2 = other.operator()(i,j);
+                if(value_1 != 0 && value_2 != 0) susMatrix.set(i, j, value_1-value_2);
             }
         }
 
-        return newMatrix;
+        return susMatrix;
     }
     Matrix<T> transpose() const
     {
-        Matrix<T> newMatrix(rows, cols);
+        Matrix<T> tranMatrix(rows, cols);
 
         for(int i = 0; i< rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
                 T val = this->operator()(i,j);
-                if(val != 0) newMatrix.set(j, i, val);
+                if(val != 0) tranMatrix.set(j, i, val);
             }
         }
 
-        return newMatrix;
+        return tranMatrix;
     }
 
     void print() const
