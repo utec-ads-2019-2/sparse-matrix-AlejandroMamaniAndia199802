@@ -40,10 +40,13 @@ public:
 
     void set(int x, int y, T val)
     {
+        // Si debería permitirse insertar elementos distintos a 0, sería un reemplazo
         if(this->operator()(x, y) != 0) return;
 
+        // Falta el borrado en el caso que sea 0 el elemento
         auto addedNode = new Node<T>(x, y, val);
 
+        // Bastante de este código podría resumirse
         Node<T> *prev;
         auto search = this->root;
         for(int i = 0; i<=x; i++)
@@ -51,6 +54,7 @@ public:
             search = search->down;
         }
         prev= search;
+        
         while(search->Y < y && search->next != nullptr)
         {
             prev= search;
@@ -120,6 +124,7 @@ public:
         {
             for (int j = 0; j < cols; j++)
             {
+                // Esta forma de multiplicar no es la más eficiente
                 T value = this->operator()(i,j);
                 if(value != 0) multipliedMatrix.set(i, j, value*scalar);
             }
@@ -140,6 +145,7 @@ public:
                     T sum = 0;
                     for (int k = 0; k < this->cols; k++)
                     {
+                        // Esta forma de multiplicar no es la más eficiente
                         if(this->operator()(i,j) != 0 && other.operator()(i,j) != 0)
                             {
                                 sum += this->operator()(j,k) * other.operator()(k,i);
@@ -161,6 +167,7 @@ public:
         {
             for (int j = 0; j < cols; j++)
             {
+                // Esta forma de multiplicar no es la más eficiente
                 T value_1 = this->operator()(i,j);
                 T value_2 = other.operator()(i,j);
                 if(value_1 != 0 && value_2 != 0) sumMatrix.set(i, j, value_1+value_2);
@@ -213,6 +220,7 @@ public:
     {
         for (int j = 0; j < rows; ++j)
         {
+            // Para qué estás creando nuevos nodos en el destructor?
             auto *ptr = new Node<T>(j,-1,j);
             if(operator()(0,j))
             {
